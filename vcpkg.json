@@ -1,0 +1,43 @@
+{
+  "name": "rosbag-win",
+  "builtin-baseline": "6ecbbbdf31cba47aafa7cf6189b1e73e10ac61f8",
+  "version": "0.0.1",
+  "dependencies": [
+    {
+      "name": "boost-thread"
+    },
+    {
+      "name": "boost-math"
+    },
+    {
+      "name": "boost-format"
+    },
+    {
+      "name": "boost-foreach"
+    },
+    {
+      "name": "boost-dll"
+    },
+    {
+      "name": "boost-filesystem"
+    },
+    {
+      "name": "boost-system"
+    },
+    {
+      "name": "bzip2"
+    },
+    {
+      "name": "eigen3"
+    },
+    {
+      "name": "lz4"
+    },
+    {
+      "name": "rapidjson"
+    },
+    {
+      "name": "nlohmann-json"
+    }
+  ]
+}

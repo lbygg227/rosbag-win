@@ -1,0 +1,30 @@
+cmake_minimum_required (VERSION 3.20.0)
+project(cpp_common)
+
+find_package(Boost REQUIRED COMPONENTS system thread)
+
+include(CheckIncludeFile)
+include(CheckFunctionExists)
+include(CheckCXXSourceCompiles)
+
+include_directories(include ${Boost_INCLUDE_DIRS} ${console_bridge_INCLUDE_DIRS})
+
+# execinfo.h is needed for backtrace on glibc systems
+CHECK_INCLUDE_FILE(execinfo.h HAVE_EXECINFO_H)
+if(HAVE_EXECINFO_H)
+  add_definitions(-DHAVE_EXECINFO_H=1)
+endif(HAVE_EXECINFO_H)
+# do we have demangle capability?
+# CHECK_INCLUDE_FILE doesn't work here for some reason
+CHECK_CXX_SOURCE_COMPILES("#include<cxxabi.h>\nint main(int argc,char**argv){}" HAVE_CXXABI_H)
+if(HAVE_CXXABI_H)
+  add_definitions(-DHAVE_CXXABI_H=1)
+endif()
+CHECK_FUNCTION_EXISTS(backtrace HAVE_GLIBC_BACKTRACE)
+if(HAVE_GLIBC_BACKTRACE)
+  add_definitions(-DHAVE_GLIBC_BACKTRACE)
+endif(HAVE_GLIBC_BACKTRACE)
+
+add_library(${PROJECT_NAME} src/debug.cpp src/header.cpp)
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} ${console_bridge_LIBRARIES})
+message(STATUS "console_bridge include: ${console_bridge_INCLUDE_DIRS}")

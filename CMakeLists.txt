@@ -15,7 +15,7 @@ if (MSVC)
     #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zm2000")
 endif()
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 #Èý·½¿âÄ¿Â¼
 set(ROS_BAG_MODULE ${PROJECT_SOURCE_DIR}/rosbag)
 set(COMMON ${PROJECT_SOURCE_DIR}/common)
